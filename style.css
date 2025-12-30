@@ -1,47 +1,623 @@
-/* Gaya 8-bit yang lebih detail */
-body {
-    background-color: #1a1a1a;
-    color: #00ff00; /* Hijau retro terminal */
-    font-family: 'Press Start 2P', cursive;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* ============================================
+   DACHENXI 8-BIT PORTFOLIO - STYLE
+   ============================================ */
+
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* CSS Variables */
+:root {
+    --primary-color: #00ff00;
+    --secondary-color: #ff00ff;
+    --accent-color: #00ffff;
+    --warning-color: #ffff00;
+    --danger-color: #ff0000;
+    --bg-dark: #0a0a0a;
+    --bg-medium: #1a1a2e;
+    --text-light: #ffffff;
+    --pixel-border: 4px;
+}
+
+/* Reset & Base */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--primary-color);
+    font-family: 'Press Start 2P', cursive;
+    min-height: 100vh;
+    overflow-x: hidden;
+    image-rendering: pixelated;
+    position: relative;
+}
+
+/* Scanlines Effect */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Pixel Stars Background */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    background: var(--text-light);
+    width: 4px;
+    height: 4px;
+    animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Main Container */
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+}
+
+/* Pixel Avatar */
+.pixel-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    border: var(--pixel-border) solid var(--text-light);
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.avatar-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.eye {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--text-light);
+    top: 30px;
+}
+
+.eye.left { left: 20px; }
+.eye.right { right: 20px; }
+
+.mouth {
+    position: absolute;
+    width: 40px;
+    height: 8px;
+    background: var(--text-light);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Glitch Title Effect */
+.glitch {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    text-shadow:
+        3px 3px 0 var(--secondary-color),
+        -3px -3px 0 var(--accent-color);
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0%, 90%, 100% { transform: translate(0); }
+    92% { transform: translate(-2px, 2px); }
+    94% { transform: translate(2px, -2px); }
+    96% { transform: translate(-2px, -2px); }
+    98% { transform: translate(2px, 2px); }
+}
+
+.subtitle {
+    color: var(--accent-color);
+    font-size: 0.7rem;
+    margin-top: 15px;
+    letter-spacing: 2px;
+}
+
+/* Navigation */
+.nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.nav-btn {
+    background: var(--bg-medium);
+    color: var(--primary-color);
+    border: var(--pixel-border) solid var(--primary-color);
+    padding: 12px 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    cursor: pointer;
+    transition: all 0.1s;
+    position: relative;
+}
+
+.nav-btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--primary-color);
+}
+
+.nav-btn.active {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    box-shadow:
+        inset -4px -4px 0 rgba(0,0,0,0.3),
+        inset 4px 4px 0 rgba(255,255,255,0.3);
+}
+
+.nav-btn .icon {
+    margin-right: 5px;
+}
+
+/* Content Sections */
+.content {
+    position: relative;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section Box */
+.section-box {
+    background: rgba(26, 26, 46, 0.9);
+    border: var(--pixel-border) solid var(--primary-color);
+    padding: 25px;
+    position: relative;
+}
+
+.section-box::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: 8px;
+    bottom: 8px;
+    border: var(--pixel-border) solid var(--secondary-color);
+    z-index: -1;
+}
+
+.section-box h2 {
+    color: var(--warning-color);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed var(--primary-color);
+}
+
+/* Terminal Style */
+.terminal {
+    background: #000;
+    border: 2px solid var(--primary-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+    line-height: 1.8;
+}
+
+.terminal p {
+    color: var(--primary-color);
+}
+
+.highlight {
+    color: var(--warning-color);
+}
+
+/* Blink Animation */
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Stats Bar */
+.stats-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-label {
+    width: 40px;
+    font-size: 0.6rem;
+    color: var(--text-light);
+}
+
+.bar {
+    flex: 1;
+    height: 20px;
+    background: #333;
+    border: 2px solid var(--text-light);
+    position: relative;
     overflow: hidden;
 }
 
-.container {
-    text-align: center;
-    background: #000;
-    padding: 30px;
-    border: 4px solid #fff;
-    /* Efek bayangan kotak bertingkat */
-    box-shadow: 10px 10px 0 #555;
+.bar-fill {
+    height: 100%;
+    transition: width 1s ease;
 }
 
-/* Tombol gaya game retro */
-.btn {
-    display: inline-block;
+.bar-fill.hp { background: var(--danger-color); }
+.bar-fill.mp { background: var(--accent-color); }
+.bar-fill.exp { background: var(--warning-color); }
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.skill-item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--accent-color);
     padding: 15px;
-    margin-top: 20px;
-    background: #fff;
-    color: #000;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.skill-item:hover {
+    transform: scale(1.05);
+    border-color: var(--warning-color);
+}
+
+.skill-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.skill-name {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.skill-level {
+    color: var(--warning-color);
+}
+
+.skill-level .star {
+    opacity: 0.3;
+}
+
+.skill-level .star.filled {
+    opacity: 1;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.project-card {
+    background: linear-gradient(145deg, #1a1a2e, #0a0a0a);
+    border: 3px solid var(--secondary-color);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: 'CLICK!';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.4rem;
+    color: var(--warning-color);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--warning-color);
+    box-shadow: 0 10px 0 rgba(255, 255, 0, 0.3);
+}
+
+.project-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.project-card h3 {
+    color: var(--text-light);
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+}
+
+.project-card p {
+    font-size: 0.5rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.project-tag {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: var(--text-light);
+    padding: 5px 10px;
+    font-size: 0.5rem;
+}
+
+/* Contact Section */
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--bg-medium);
+    border: 3px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 15px;
     text-decoration: none;
-    border: 4px solid #000;
-    box-shadow: -4px -4px 0 0 #888 inset;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    transition: all 0.2s;
 }
 
-.btn:active {
-    box-shadow: 4px 4px 0 0 #888 inset;
+.contact-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-dark);
+    transform: scale(1.05);
 }
 
-/* Efek garis monitor */
-.scanlines {
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+.message-box {
+    background: #000;
+    border: 2px solid var(--primary-color);
+    padding: 15px;
+    font-size: 0.6rem;
+    line-height: 2;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+    border-top: 2px dashed var(--primary-color);
+}
+
+.footer p {
+    font-size: 0.5rem;
+    margin-bottom: 10px;
+}
+
+.heart {
+    color: var(--danger-color);
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.score {
+    color: var(--warning-color);
+}
+
+/* Modal */
+.modal {
+    display: none;
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-    background-size: 100% 4px;
-    z-index: 10;
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--bg-medium);
+    border: 4px solid var(--primary-color);
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: var(--danger-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+}
+
+#modalBody h3 {
+    color: var(--warning-color);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+#modalBody p {
+    font-size: 0.6rem;
+    line-height: 2;
+    margin-bottom: 15px;
+}
+
+#modalBody .modal-link {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    margin-top: 10px;
+}
+
+#modalBody .modal-link:hover {
+    background: var(--warning-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 1.5rem;
+    }
+
+    .nav-btn {
+        padding: 10px 15px;
+        font-size: 0.5rem;
+    }
+
+    .section-box {
+        padding: 15px;
+    }
+
+    .terminal {
+        font-size: 0.55rem;
+    }
+
+    .project-card h3 {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glitch {
+        font-size: 1.2rem;
+    }
+
+    .pixel-avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .eye {
+        width: 12px;
+        height: 12px;
+        top: 20px;
+    }
+
+    .eye.left { left: 12px; }
+    .eye.right { right: 12px; }
+
+    .mouth {
+        width: 25px;
+        height: 6px;
+        bottom: 15px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
 }
