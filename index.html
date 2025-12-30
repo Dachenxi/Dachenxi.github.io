@@ -1,1 +1,75 @@
-COOMING SOON
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delapan - 8-Bit World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. Pengaturan Dasar */
+        body {
+            background-color: #212529; /* Warna gelap ala retro */
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            image-rendering: pixelated; /* Memastikan gambar tetap kotak-kotak */
+        }
+
+        /* 2. Container Utama */
+        .container {
+            text-align: center;
+            padding: 40px;
+            /* Efek Pixel Border */
+            background-color: #ffffff;
+            color: #212529;
+            border: 4px solid #000;
+            box-shadow:
+                    8px 0 0 0 #000,
+                    -8px 0 0 0 #000,
+                    0 8px 0 0 #000,
+                    0 -8px 0 0 #000;
+            max-width: 500px;
+        }
+
+        /* 3. Gaya Judul */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* 4. Tombol 8-bit */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border: 4px solid #000;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>HomePage</h1>
+    <p>Selamat datang di dunia pixel!</p>
+    <p style="font-size: 10px; line-height: 1.5;">
+        Domain delapan.my.id sedang dalam proses pembangunan.
+    </p>
+    <a href="#" class="btn">MULAI</a>
+</div>
+
+</body>
+</html>
