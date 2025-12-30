@@ -3,73 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delapan - 8-Bit World</title>
+    <title>Dachenxi - 8-Bit Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-    <style>
-        /* 1. Pengaturan Dasar */
-        body {
-            background-color: #212529; /* Warna gelap ala retro */
-            color: #ffffff;
-            font-family: 'Press Start 2P', cursive;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            image-rendering: pixelated; /* Memastikan gambar tetap kotak-kotak */
-        }
-
-        /* 2. Container Utama */
-        .container {
-            text-align: center;
-            padding: 40px;
-            /* Efek Pixel Border */
-            background-color: #ffffff;
-            color: #212529;
-            border: 4px solid #000;
-            box-shadow:
-                    8px 0 0 0 #000,
-                    -8px 0 0 0 #000,
-                    0 8px 0 0 #000,
-                    0 -8px 0 0 #000;
-            max-width: 500px;
-        }
-
-        /* 3. Gaya Judul */
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        /* 4. Tombol 8-bit */
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #e74c3c;
-            color: white;
-            text-decoration: none;
-            border: 4px solid #000;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #c0392b;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Scanlines Effect -->
+    <div class="scanlines"></div>
 
-<div class="container">
-    <h1>HomePage</h1>
-    <p>Selamat datang di dunia pixel!</p>
-    <p style="font-size: 10px; line-height: 1.5;">
-        Domain delapan.my.id sedang dalam proses pembangunan.
-    </p>
-    <a href="#" class="btn">MULAI</a>
-</div>
+    <!-- Pixel Stars Background -->
+    <div class="stars" id="stars"></div>
 
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header with pixel art character -->
+        <header class="header">
+            <div class="pixel-avatar">
+                <div class="avatar-face">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            <h1 class="glitch" data-text="DACHENXI">DACHENXI</h1>
+            <p class="subtitle">< Developer & Creator /></p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <button class="nav-btn active" data-section="about">
+                <span class="icon">👤</span> ABOUT
+            </button>
+            <button class="nav-btn" data-section="skills">
+                <span class="icon">⚔️</span> SKILLS
+            </button>
+            <button class="nav-btn" data-section="projects">
+                <span class="icon">🎮</span> PROJECTS
+            </button>
+            <button class="nav-btn" data-section="contact">
+                <span class="icon">📧</span> CONTACT
+            </button>
+        </nav>
+
+        <!-- Content Sections -->
+        <main class="content">
+            <!-- About Section -->
+            <section id="about" class="section active">
+                <div class="section-box">
+                    <h2>// TENTANG AKU</h2>
+                    <div class="terminal">
+                        <p class="typing-text">
+                            > Hai! Selamat datang di dunia 8-bit ku!<br><br>
+                            > Aku adalah seorang developer yang suka<br>
+                            > membuat berbagai project menarik.<br><br>
+                            > Suka bermain game, coding, dan<br>
+                            > mengeksplorasi teknologi baru.<br><br>
+                            > Level: <span class="highlight">99</span><br>
+                            > Status: <span class="highlight blink">ONLINE</span>
+                        </p>
+                    </div>
+                    <div class="stats-bar">
+                        <div class="stat">
+                            <span class="stat-label">HP</span>
+                            <div class="bar"><div class="bar-fill hp" style="width: 100%"></div></div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">MP</span>
+                            <div class="bar"><div class="bar-fill mp" style="width: 80%"></div></div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">EXP</span>
+                            <div class="bar"><div class="bar-fill exp" style="width: 65%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <div class="section-box">
+                    <h2>// SKILL TREE</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <span class="skill-icon">💻</span>
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-level">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">⚡</span>
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-level">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🐍</span>
+                            <span class="skill-name">Python</span>
+                            <div class="skill-level">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🎨</span>
+                            <span class="skill-name">Design</span>
+                            <div class="skill-level">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="section-box">
+                    <h2>// PROJECT INVENTORY</h2>
+                    <div class="projects-grid">
+                        <div class="project-card" onclick="showProjectDetail('project1')">
+                            <div class="project-icon">🎮</div>
+                            <h3>Game Project</h3>
+                            <p>Sebuah game 2D sederhana</p>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <div class="project-card" onclick="showProjectDetail('project2')">
+                            <div class="project-icon">🌐</div>
+                            <h3>Web App</h3>
+                            <p>Aplikasi web interaktif</p>
+                            <span class="project-tag">React</span>
+                        </div>
+                        <div class="project-card" onclick="showProjectDetail('project3')">
+                            <div class="project-icon">🤖</div>
+                            <h3>Bot Project</h3>
+                            <p>Discord/Telegram bot</p>
+                            <span class="project-tag">Python</span>
+                        </div>
+                        <div class="project-card" onclick="showProjectDetail('project4')">
+                            <div class="project-icon">📱</div>
+                            <h3>Mobile App</h3>
+                            <p>Aplikasi mobile sederhana</p>
+                            <span class="project-tag">Flutter</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="section-box">
+                    <h2>// HUBUNGI AKU</h2>
+                    <div class="contact-links">
+                        <a href="https://github.com/Dachenxi" class="contact-btn" target="_blank">
+                            <span class="btn-icon">🐙</span>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="#" class="contact-btn">
+                            <span class="btn-icon">📧</span>
+                            <span>Email</span>
+                        </a>
+                        <a href="#" class="contact-btn">
+                            <span class="btn-icon">💬</span>
+                            <span>Discord</span>
+                        </a>
+                        <a href="#" class="contact-btn">
+                            <span class="btn-icon">📸</span>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                    <div class="message-box">
+                        <p>> Jangan ragu untuk menghubungi aku!</p>
+                        <p>> Aku selalu terbuka untuk kolaborasi<span class="blink">_</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 DaChenxi | MADE WITH <span class="heart">♥</span> & PIXELS</p>
+            <p>Disclaimer Website dibuat oleh AI</p>
+            <p>Just For Fun</p>
+            <p class="score">VISITOR SCORE: <span id="score">00000</span></p>
+        </footer>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
