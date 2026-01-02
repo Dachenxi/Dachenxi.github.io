@@ -1,217 +1,326 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+    <!-- ============================================================================
+       DelapanBit.my.id - Landing Page
+       
+       PANDUAN CUSTOMIZATION:
+       ----------------------
+       1. Ubah teks di dalam tag HTML untuk mengubah konten
+       2. Tambah/hapus section dengan copy-paste struktur yang ada
+       3. Ubah emoji/icon sesuai kebutuhan
+       4. Semua class sudah terdokumentasi di style.css
+       ============================================================================ -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dachenxi - 8-Bit Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags - Ubah sesuai kebutuhan -->
+    <title>DelapanBit - Digital Playground 🌿</title>
+    <meta name="description"
+        content="DelapanBit adalah playground digital untuk eksplorasi teknologi, tools, dan kreativitas. Dibuat dengan cinta dan AI.">
+    <meta name="keywords" content="delapanbit, tools, converter, digital, teknologi">
+    <meta name="author" content="DelapanBit">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="DelapanBit - Digital Playground">
+    <meta property="og:description" content="Playground digital untuk eksplorasi teknologi dan kreativitas">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://delapanbit.my.id">
+
+    <!-- Favicon - Ganti dengan favicon sendiri -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Scanlines Effect -->
-    <div class="scanlines"></div>
 
-    <!-- Pixel Stars Background -->
-    <div class="stars" id="stars"></div>
+    <!-- ============================================================================
+       NAVIGATION BAR
+       Ubah link navigasi sesuai section yang ada
+       ============================================================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo - Ubah nama dan icon di sini -->
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">🌿</span>
+                <span>DelapanBit</span>
+            </a>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Header with pixel art character -->
-        <header class="header">
-            <div class="pixel-avatar">
-                <div class="avatar-face">
-                    <div class="eye left"></div>
-                    <div class="eye right"></div>
-                    <div class="mouth"></div>
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#tools">Tools</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================================
+       HERO SECTION
+       Bagian utama yang pertama kali dilihat pengunjung
+       ============================================================================ -->
+    <section class="hero section" id="home">
+        <!-- Background Effects -->
+        <div class="particles" id="particles"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-glow"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <!-- Badge kecil di atas judul -->
+            <span class="hero-badge">✨ Welcome to the Forest</span>
+
+            <!-- Judul Utama - Ubah teks sesuai kebutuhan -->
+            <h1 class="hero-title">
+                Selamat Datang di<br>
+                <span class="highlight">DelapanBit</span>
+            </h1>
+
+            <!-- Subtitle/Deskripsi singkat -->
+            <p class="hero-subtitle">
+                Playground digital untuk eksplorasi teknologi, tools, dan kreativitas tanpa batas.
+                Tempat bermain sambil belajar hal-hal baru.
+            </p>
+
+            <!-- Tombol CTA -->
+            <div class="hero-buttons">
+                <a href="#tools" class="btn btn-primary">
+                    🔧 Jelajahi Tools
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    📖 Tentang Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+       SERVICES SECTION
+       Tampilkan layanan atau fitur utama
+       Tambah/kurangi kartu dengan copy-paste .service-card
+       ============================================================================ -->
+    <section class="services section" id="services">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header animate-on-scroll">
+                <h2>Apa yang Kami Tawarkan</h2>
+                <p>Berbagai tools dan eksperimen digital yang bisa kamu gunakan secara gratis</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid">
+
+                <!-- Service Card 1 -->
+                <div class="service-card animate-on-scroll delay-1">
+                    <div class="service-icon">🔄</div>
+                    <h3>Converter</h3>
+                    <p>Konversi berbagai format dan satuan dengan mudah. Unit, warna, basis angka, dan lainnya.</p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card animate-on-scroll delay-2">
+                    <div class="service-icon">🎨</div>
+                    <h3>Eksperimen Web</h3>
+                    <p>Koleksi eksperimen interaktif dan visual yang menarik untuk dijelajahi.</p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card animate-on-scroll delay-3">
+                    <div class="service-icon">📚</div>
+                    <h3>Belajar Bersama</h3>
+                    <p>Resources dan tutorial sederhana untuk belajar teknologi web dan programming.</p>
+                </div>
+
+                <!-- Service Card 4 - Tambahkan atau hapus sesuai kebutuhan -->
+                <div class="service-card animate-on-scroll delay-4">
+                    <div class="service-icon">🌱</div>
+                    <h3>Open Source</h3>
+                    <p>Semua project dibuat dengan semangat berbagi dan bisa diakses siapa saja.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+       ABOUT SECTION
+       Ceritakan tentang website/brand
+       ============================================================================ -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-container">
+
+                <!-- Visual/Image Side -->
+                <div class="about-visual animate-on-scroll">
+                    <div class="about-image-placeholder">
+                        🌲
+                    </div>
+                </div>
+
+                <!-- Content Side -->
+                <div class="about-content animate-on-scroll delay-2">
+                    <h2>Tentang DelapanBit</h2>
+                    <p>
+                        DelapanBit adalah ruang digital personal untuk bereksperimen dengan teknologi web.
+                        Nama "DelapanBit" terinspirasi dari era 8-bit computing yang penuh nostalgia dan kreativitas.
+                    </p>
+                    <p>
+                        Di sini, kamu akan menemukan berbagai tools, eksperimen, dan project kecil yang dibuat
+                        untuk belajar sekaligus bersenang-senang. Semua dibuat dengan penuh cinta dan bantuan AI! 🤖
+                    </p>
+
+                    <!-- Stats - Ubah angka sesuai kebutuhan -->
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Ide Baru</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Selalu Online</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Gratis</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+       TOOLS SECTION
+       Link ke berbagai tools/subdomain
+       Tambah tool baru dengan copy-paste .tool-card
+       ============================================================================ -->
+    <section class="tools section" id="tools">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header animate-on-scroll">
+                <h2>Tools & Aplikasi</h2>
+                <p>Kumpulan tools yang siap membantu aktivitas digitalmu</p>
+            </div>
+
+            <!-- Tools Grid -->
+            <div class="tools-grid">
+
+                <!-- Tool Card 1 - Converter -->
+                <a href="https://converter.delapanbit.my.id" target="_blank" rel="noopener"
+                    class="tool-card animate-on-scroll delay-1">
+                    <div class="tool-icon">🔄</div>
+                    <h3>Universal Converter</h3>
+                    <p>Konversi unit, warna, basis angka, dan berbagai format lainnya dengan mudah</p>
+                    <span class="tool-link">
+                        Buka Converter →
+                    </span>
+                </a>
+
+                <!-- Tool Card 2 - Coming Soon (contoh untuk tool baru) -->
+                <div class="tool-card animate-on-scroll delay-2" style="opacity: 0.6; cursor: default;">
+                    <div class="tool-icon">🎲</div>
+                    <h3>Random Generator</h3>
+                    <p>Generate nama, warna, password, dan berbagai hal random lainnya</p>
+                    <span class="tool-link" style="color: var(--text-muted);">
+                        Segera Hadir
+                    </span>
+                </div>
+
+                <!-- Tool Card 3 - Coming Soon -->
+                <div class="tool-card animate-on-scroll delay-3" style="opacity: 0.6; cursor: default;">
+                    <div class="tool-icon">📝</div>
+                    <h3>Text Tools</h3>
+                    <p>Berbagai tools untuk manipulasi teks: case converter, counter, encoder, dll</p>
+                    <span class="tool-link" style="color: var(--text-muted);">
+                        Segera Hadir
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+       FOOTER
+       Bagian paling bawah website
+       ============================================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <span class="logo-icon">🌿</span>
+                        <span>DelapanBit</span>
+                    </a>
+                    <p>
+                        Playground digital untuk eksplorasi teknologi dan kreativitas.
+                        Dibuat dengan ❤️ dan sedikit bantuan AI.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#services">Layanan</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tools Links -->
+                <div class="footer-links">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="https://converter.delapanbit.my.id" target="_blank">Converter</a></li>
+                        <li><a href="#" style="color: var(--text-muted);">Random Generator (soon)</a></li>
+                        <li><a href="#" style="color: var(--text-muted);">Text Tools (soon)</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 DelapanBit. Semua hak dilindungi (atau tidak, karena ini cuma for fun 😄)
+                </p>
+
+                <!-- AI Disclaimer - Sesuai request user -->
+                <div class="footer-disclaimer">
+                    <span class="ai-icon">🤖</span>
+                    <span>Website ini dibuat dengan bantuan AI dan hanya untuk bersenang-senang</span>
                 </div>
             </div>
-            <h1 class="glitch" data-text="DACHENXI">DACHENXI</h1>
-            <p class="subtitle">< Developer & Creator /></p>
-        </header>
-
-        <!-- Navigation -->
-        <nav class="nav-menu">
-            <button class="nav-btn active" data-section="about">
-                <span class="icon">👤</span> ABOUT
-            </button>
-            <button class="nav-btn" data-section="skills">
-                <span class="icon">⚔️</span> SKILLS
-            </button>
-            <button class="nav-btn" data-section="projects">
-                <span class="icon">🎮</span> PROJECTS
-            </button>
-            <button class="nav-btn" data-section="contact">
-                <span class="icon">📧</span> CONTACT
-            </button>
-        </nav>
-
-        <!-- Content Sections -->
-        <main class="content">
-            <!-- About Section -->
-            <section id="about" class="section active">
-                <div class="section-box">
-                    <h2>// TENTANG AKU</h2>
-                    <div class="terminal">
-                        <p class="typing-text">
-                            > Hai! Selamat datang di dunia 8-bit ku!<br><br>
-                            > Aku adalah seorang developer yang suka<br>
-                            > membuat berbagai project menarik.<br><br>
-                            > Suka bermain game, coding, dan<br>
-                            > mengeksplorasi teknologi baru.<br><br>
-                            > Level: <span class="highlight">99</span><br>
-                            > Status: <span class="highlight blink">ONLINE</span>
-                        </p>
-                    </div>
-                    <div class="stats-bar">
-                        <div class="stat">
-                            <span class="stat-label">HP</span>
-                            <div class="bar"><div class="bar-fill hp" style="width: 100%"></div></div>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">MP</span>
-                            <div class="bar"><div class="bar-fill mp" style="width: 80%"></div></div>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">EXP</span>
-                            <div class="bar"><div class="bar-fill exp" style="width: 65%"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Skills Section -->
-            <section id="skills" class="section">
-                <div class="section-box">
-                    <h2>// SKILL TREE</h2>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <span class="skill-icon">💻</span>
-                            <span class="skill-name">HTML/CSS</span>
-                            <div class="skill-level">
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star">★</span>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-icon">⚡</span>
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-level">
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-icon">🐍</span>
-                            <span class="skill-name">Python</span>
-                            <div class="skill-level">
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star">★</span>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-icon">🎨</span>
-                            <span class="skill-name">Design</span>
-                            <div class="skill-level">
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star filled">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects" class="section">
-                <div class="section-box">
-                    <h2>// PROJECT INVENTORY</h2>
-                    <div class="projects-grid">
-                        <div class="project-card" onclick="showProjectDetail('project1')">
-                            <div class="project-icon">🎮</div>
-                            <h3>Game Project</h3>
-                            <p>Sebuah game 2D sederhana</p>
-                            <span class="project-tag">JavaScript</span>
-                        </div>
-                        <div class="project-card" onclick="showProjectDetail('project2')">
-                            <div class="project-icon">🌐</div>
-                            <h3>Web App</h3>
-                            <p>Aplikasi web interaktif</p>
-                            <span class="project-tag">React</span>
-                        </div>
-                        <div class="project-card" onclick="showProjectDetail('project3')">
-                            <div class="project-icon">🤖</div>
-                            <h3>Bot Project</h3>
-                            <p>Discord/Telegram bot</p>
-                            <span class="project-tag">Python</span>
-                        </div>
-                        <div class="project-card" onclick="showProjectDetail('project4')">
-                            <div class="project-icon">📱</div>
-                            <h3>Mobile App</h3>
-                            <p>Aplikasi mobile sederhana</p>
-                            <span class="project-tag">Flutter</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="section">
-                <div class="section-box">
-                    <h2>// HUBUNGI AKU</h2>
-                    <div class="contact-links">
-                        <a href="https://github.com/Dachenxi" class="contact-btn" target="_blank">
-                            <span class="btn-icon">🐙</span>
-                            <span>GitHub</span>
-                        </a>
-                        <a href="#" class="contact-btn">
-                            <span class="btn-icon">📧</span>
-                            <span>Email</span>
-                        </a>
-                        <a href="#" class="contact-btn">
-                            <span class="btn-icon">💬</span>
-                            <span>Discord</span>
-                        </a>
-                        <a href="#" class="contact-btn">
-                            <span class="btn-icon">📸</span>
-                            <span>Instagram</span>
-                        </a>
-                    </div>
-                    <div class="message-box">
-                        <p>> Jangan ragu untuk menghubungi aku!</p>
-                        <p>> Aku selalu terbuka untuk kolaborasi<span class="blink">_</span></p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>© 2025 DaChenxi | MADE WITH <span class="heart">♥</span> & PIXELS</p>
-            <p>Disclaimer Website dibuat oleh AI</p>
-            <p>Just For Fun</p>
-            <p class="score">VISITOR SCORE: <span id="score">00000</span></p>
-        </footer>
-    </div>
-
-    <!-- Project Modal -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div id="modalBody"></div>
         </div>
-    </div>
+    </footer>
 
+    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
+
 </html>
