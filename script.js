@@ -1,271 +1,274 @@
-/* ============================================
-   DACHENXI 8-BIT PORTFOLIO - SCRIPT
-   ============================================ */
+/* ============================================================================
+   DelapanBit.my.id - JavaScript
+   
+   PANDUAN CUSTOMIZATION:
+   ----------------------
+   1. Setiap fungsi memiliki komentar penjelasan
+   2. Ubah nilai di CONFIG untuk menyesuaikan behavior
+   3. Hapus/tambah fitur sesuai kebutuhan
+   ============================================================================ */
 
-// Wait for DOM to load
-document.addEventListener('DOMContentLoaded', function() {
-    initStars();
-    initNavigation();
-    initScore();
-    playSound('start');
+// ============================================================================
+// CONFIGURATION - Ubah nilai di sini untuk mengatur behavior
+// ============================================================================
+const CONFIG = {
+    // Jumlah partikel di hero section
+    particleCount: 20,
+
+    // Delay animasi scroll (ms)
+    scrollAnimationThreshold: 0.1,
+
+    // Scroll position untuk navbar berubah
+    navbarScrollThreshold: 50,
+};
+
+// ============================================================================
+// INITIALIZATION - Jalankan saat DOM siap
+// ============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    initNavbar();
+    initMobileMenu();
+    initParticles();
+    initScrollAnimations();
+    initSmoothScroll();
+
+    console.log('🌿 DelapanBit initialized successfully!');
 });
 
-// Create Pixel Stars Background
-function initStars() {
-    const starsContainer = document.getElementById('stars');
-    const starCount = 50;
-    
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 2 + 's';
-        star.style.opacity = Math.random() * 0.5 + 0.5;
-        starsContainer.appendChild(star);
-    }
+// ============================================================================
+// NAVBAR FUNCTIONALITY
+// Mengatur behavior navbar saat scroll
+// ============================================================================
+function initNavbar() {
+    const navbar = document.getElementById('navbar');
+
+    if (!navbar) return;
+
+    // Tambah class 'scrolled' saat user scroll ke bawah
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > CONFIG.navbarScrollThreshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
 }
 
-// Navigation System
-function initNavigation() {
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const sections = document.querySelectorAll('.section');
-    
-    navButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetSection = this.getAttribute('data-section');
-            
-            // Remove active class from all buttons and sections
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            sections.forEach(sec => sec.classList.remove('active'));
-            
-            // Add active class to clicked button and target section
-            this.classList.add('active');
-            document.getElementById(targetSection).classList.add('active');
-            
-            // Play click sound effect
-            playSound('click');
-            
-            // Add score
-            addScore(10);
+// ============================================================================
+// MOBILE MENU
+// Toggle menu di mobile view
+// ============================================================================
+function initMobileMenu() {
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (!navToggle || !navLinks) return;
+
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+
+    // Tutup menu saat link diklik
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
         });
     });
 }
 
-// Score System
-let currentScore = 0;
+// ============================================================================
+// PARTICLE ANIMATION
+// Membuat efek partikel melayang di hero section
+// Kamu bisa mengubah jumlah partikel di CONFIG.particleCount
+// ============================================================================
+function initParticles() {
+    const particlesContainer = document.getElementById('particles');
 
-function initScore() {
-    // Load score from localStorage
-    const savedScore = localStorage.getItem('visitorScore');
-    if (savedScore) {
-        currentScore = parseInt(savedScore);
-    }
-    updateScoreDisplay();
-    
-    // Add initial visit score
-    addScore(100);
-}
+    if (!particlesContainer) return;
 
-function addScore(points) {
-    currentScore += points;
-    localStorage.setItem('visitorScore', currentScore);
-    updateScoreDisplay();
-}
-
-function updateScoreDisplay() {
-    const scoreElement = document.getElementById('score');
-    if (scoreElement) {
-        scoreElement.textContent = String(currentScore).padStart(5, '0');
+    // Buat partikel sesuai jumlah di config
+    for (let i = 0; i < CONFIG.particleCount; i++) {
+        createParticle(particlesContainer, i);
     }
 }
 
-// Project Details Data
-const projectsData = {
-    project1: {
-        title: '🎮 GAME PROJECT',
-        description: 'Sebuah game 2D sederhana yang dibuat dengan JavaScript dan HTML5 Canvas. Game ini memiliki fitur scoring system, multiple levels, dan pixel art graphics.',
-        tech: 'JavaScript, HTML5 Canvas, CSS3',
-        link: '#'
-    },
-    project2: {
-        title: '🌐 WEB APP',
-        description: 'Aplikasi web interaktif dengan fitur-fitur modern. Menggunakan React untuk frontend dan dilengkapi dengan responsive design.',
-        tech: 'React, Node.js, CSS3',
-        link: '#'
-    },
-    project3: {
-        title: '🤖 BOT PROJECT',
-        description: 'Bot untuk Discord/Telegram dengan berbagai fitur menarik seperti music player, moderation tools, dan mini games.',
-        tech: 'Python, Discord.py, SQLite',
-        link: '#'
-    },
-    project4: {
-        title: '📱 MOBILE APP',
-        description: 'Aplikasi mobile cross-platform yang dibuat dengan Flutter. Memiliki UI yang clean dan performa yang smooth.',
-        tech: 'Flutter, Dart, Firebase',
-        link: '#'
-    }
-};
+/**
+ * Membuat satu partikel dengan posisi dan timing random
+ * @param {HTMLElement} container - Container untuk partikel
+ * @param {number} index - Index partikel untuk variasi
+ */
+function createParticle(container, index) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
 
-// Show Project Detail Modal
-function showProjectDetail(projectId) {
-    const modal = document.getElementById('projectModal');
-    const modalBody = document.getElementById('modalBody');
-    const project = projectsData[projectId];
+    // Random properties untuk variasi
+    const size = Math.random() * 10 + 5; // 5-15px
+    const left = Math.random() * 100; // 0-100%
+    const delay = Math.random() * 15; // 0-15s delay
+    const duration = Math.random() * 10 + 10; // 10-20s duration
+    const opacity = Math.random() * 0.3 + 0.1; // 0.1-0.4 opacity
 
-    if (project) {
-        modalBody.innerHTML = `
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <p><strong style="color: #00ffff;">Tech Stack:</strong> ${project.tech}</p>
-            <a href="${project.link}" class="modal-link" target="_blank">VIEW PROJECT →</a>
-        `;
-        modal.classList.add('active');
-        playSound('open');
-        addScore(5);
-    }
+    // Apply styles
+    particle.style.cssText = `
+    width: ${size}px;
+    height: ${size}px;
+    left: ${left}%;
+    bottom: -20px;
+    animation-delay: ${delay}s;
+    animation-duration: ${duration}s;
+    opacity: ${opacity};
+  `;
+
+    // Variasi warna (hijau dengan berbagai shade)
+    const hue = 80 + Math.random() * 40; // Hijau range
+    particle.style.background = `hsl(${hue}, 60%, 50%)`;
+
+    container.appendChild(particle);
 }
 
-// Close Modal
-function closeModal() {
-    const modal = document.getElementById('projectModal');
-    modal.classList.remove('active');
-    playSound('close');
+// ============================================================================
+// SCROLL ANIMATIONS
+// Animasi elemen saat muncul di viewport
+// Tambahkan class 'animate-on-scroll' ke elemen yang ingin dianimasi
+// ============================================================================
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+    if (animatedElements.length === 0) return;
+
+    // Gunakan Intersection Observer untuk performa yang baik
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Opsional: berhenti observe setelah terlihat
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: CONFIG.scrollAnimationThreshold,
+        rootMargin: '0px 0px -50px 0px' // Trigger sedikit sebelum elemen masuk view
+    });
+
+    animatedElements.forEach(el => observer.observe(el));
 }
 
-// Close modal when clicking outside
-document.addEventListener('click', function(e) {
-    const modal = document.getElementById('projectModal');
-    if (e.target === modal) {
-        closeModal();
+// ============================================================================
+// SMOOTH SCROLL
+// Scroll halus ke section saat nav link diklik
+// ============================================================================
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+
+            // Kecuali untuk link '#' saja (biasanya logo)
+            if (targetId === '#') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                // Offset untuk navbar fixed
+                const navbarHeight = document.getElementById('navbar')?.offsetHeight || 0;
+                const targetPosition = targetElement.offsetTop - navbarHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// Fungsi-fungsi tambahan yang mungkin berguna
+// ============================================================================
+
+/**
+ * Debounce function - mencegah fungsi dipanggil terlalu sering
+ * Berguna untuk event seperti scroll atau resize
+ * @param {Function} func - Fungsi yang akan di-debounce
+ * @param {number} wait - Waktu tunggu dalam ms
+ * @returns {Function} - Fungsi yang sudah di-debounce
+ */
+function debounce(func, wait = 100) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * Throttle function - membatasi seberapa sering fungsi dipanggil
+ * @param {Function} func - Fungsi yang akan di-throttle
+ * @param {number} limit - Batas waktu minimum antar panggilan (ms)
+ * @returns {Function} - Fungsi yang sudah di-throttle
+ */
+function throttle(func, limit = 100) {
+    let inThrottle;
+    return function (...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+/**
+ * Check if element is in viewport
+ * @param {HTMLElement} element - Element to check
+ * @returns {boolean} - True if element is visible
+ */
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// ============================================================================
+// EASTER EGG 🥚
+// Ketik "delapanbit" di keyboard untuk surprise!
+// ============================================================================
+let konamiBuffer = '';
+document.addEventListener('keydown', (e) => {
+    konamiBuffer += e.key.toLowerCase();
+    konamiBuffer = konamiBuffer.slice(-10); // Keep last 10 chars
+
+    if (konamiBuffer.includes('delapanbit')) {
+        console.log('🎉 You found the easter egg!');
+        document.body.style.animation = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.animation = 'rainbow 2s ease';
+        konamiBuffer = '';
     }
 });
 
-// Close modal with Escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-});
-
-// 8-bit Sound Effects (using Web Audio API)
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-function playSound(type) {
-    try {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        switch(type) {
-            case 'start':
-                oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
-                oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
-                oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.3);
-                break;
-            case 'click':
-                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.05);
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.05);
-                break;
-            case 'open':
-                oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.1);
-                break;
-            case 'close':
-                oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + 0.1);
-                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.1);
-                break;
-        }
-
-        oscillator.type = 'square'; // 8-bit sound
-    } catch (e) {
-        // Audio not supported or blocked
-        console.log('Audio not available');
-    }
-}
-
-// Typing Effect for Terminal (optional enhancement)
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.innerHTML = '';
-
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    type();
-}
-
-// Konami Code Easter Egg
-let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-let konamiIndex = 0;
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === konamiCode[konamiIndex]) {
-        konamiIndex++;
-        if (konamiIndex === konamiCode.length) {
-            activateEasterEgg();
-            konamiIndex = 0;
-        }
-    } else {
-        konamiIndex = 0;
-    }
-});
-
-function activateEasterEgg() {
-    addScore(1000);
-    document.body.style.animation = 'rainbow 2s infinite';
-
-    // Add rainbow animation
-    const style = document.createElement('style');
-    style.innerHTML = `
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-    `;
-    document.head.appendChild(style);
-
-    alert('🎮 KONAMI CODE ACTIVATED! +1000 POINTS! 🎮');
-
-    setTimeout(() => {
-        document.body.style.animation = '';
-    }, 5000);
-}
-
-// Console Easter Egg
-console.log(`
-%c
-    ██████╗  █████╗  ██████╗██╗  ██╗███████╗███╗   ██╗██╗  ██╗██╗
-    ██╔══██╗██╔══██╗██╔════╝██║  ██║██╔════╝████╗  ██║╚██╗██╔╝██║
-    ██║  ██║███████║██║     ███████║█████╗  ██╔██╗ ██║ ╚███╔╝ ██║
-    ██║  ██║██╔══██║██║     ██╔══██║██╔══╝  ██║╚██╗██║ ██╔██╗ ██║
-    ██████╔╝██║  ██║╚██████╗██║  ██║███████╗██║ ╚████║██╔╝ ╚██╗██║
-    ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝
-    
-    👾 Welcome to my 8-bit world! 👾
-    🎮 Try the Konami Code: ↑↑↓↓←→←→BA
-`, 'color: #00ff00; font-family: monospace;');
-
+// Rainbow animation for easter egg
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(180deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+`;
+document.head.appendChild(style);
